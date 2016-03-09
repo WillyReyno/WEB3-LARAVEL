@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', ['as' => 'welcome', 'uses' => function () {
-    return view('welcome');
-}]);
-
 
 
 
@@ -29,12 +25,15 @@ Route::get('/', ['as' => 'welcome', 'uses' => function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
 Route::group(['middleware' => 'web'], function () {
+
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::resource('/post', 'PostController');
 });

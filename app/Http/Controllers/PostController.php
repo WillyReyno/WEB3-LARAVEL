@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -15,7 +17,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = new Post;
+
+        $list = $posts->all();
+
+
+        return view('posts.index', compact('list'));
     }
 
     /**
