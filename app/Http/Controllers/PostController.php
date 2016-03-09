@@ -21,7 +21,6 @@ class PostController extends Controller
 
         $list = $posts->all();
 
-
         return view('posts.index', compact('list'));
     }
 
@@ -32,7 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -43,7 +42,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'coucou';
     }
 
     /**
@@ -54,7 +53,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('posts.show', compact('post'));
     }
 
     /**
