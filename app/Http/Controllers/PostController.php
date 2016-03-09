@@ -42,7 +42,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        return 'coucou';
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+
+        $post = new Post;
+        $input = $request->input();
+        $input['user_id'] = Auth::user()->id;
+
+        $post->fill($input)->save();
+
+        return redirect()->route('post.index');
     }
 
     /**
@@ -66,7 +77,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -78,7 +91,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+
+        $post = Post::findOrFail($id);
+        $input = $request->input();
+        $post->fill($input)->save();
+
+        return redirect()->back();
     }
 
     /**
