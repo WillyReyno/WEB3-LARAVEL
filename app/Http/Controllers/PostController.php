@@ -100,7 +100,9 @@ class PostController extends Controller
         $input = $request->input();
         $post->fill($input)->save();
 
-        return redirect()->back();
+        return redirect()
+            ->route('post.show', $id)
+            ->with('success', 'Votre article a bien été édité');
     }
 
     /**
@@ -111,6 +113,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $post->delete();
+
+        return redirect()
+            ->route('post.index')
+            ->with('success', 'Votre article a bien été supprimé');
     }
 }

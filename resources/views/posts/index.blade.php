@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
+            @include('errors.message')
             @foreach($list as $post)
                 <div class="col-md-10 col-md-offset-1">
                     <div class="panel panel-default">
