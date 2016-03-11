@@ -19,6 +19,14 @@
                         {!! Form::submit('Supprimer', ['class' => 'form-control']) !!}
 
                         {!! Form::close() !!}
+
+                        <a href="{{ route('post.edit', $post->id) }}">
+                            Modifier l'article
+                        </a>
+
+                        <a href="{{ route('post.index') }}">
+                            Retour aux articles
+                        </a>
                     </div>
                 </div>
             </div>
